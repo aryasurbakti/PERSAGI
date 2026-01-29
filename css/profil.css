@@ -1,0 +1,53 @@
+.gallery-container {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.artwork-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.artwork-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.artwork-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.artwork-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: #eee;
+}
+
+.artwork-info {
+  padding: 15px;
+}
+
+.artwork-title {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.artwork-date {
+  font-size: 13px;
+  color: #888;
+}

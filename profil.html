@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Saya | Komunitas Seni</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --glass-bg: rgba(255, 255, 255, 0.9);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--primary-gradient);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .profile-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .avatar-circle {
+      width: 100px;
+      height: 100px;
+      background: var(--primary-gradient);
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 40px;
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .info-group {
+      text-align: left;
+      background: rgba(0,0,0,0.03);
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      border-left: 4px solid #764ba2;
+    }
+
+    .info-label {
+      font-size: 12px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .info-value {
+      font-size: 16px;
+      color: #444;
+      font-weight: 500;
+      display: block;
+    }
+
+    .btn-logout {
+      margin-top: 30px;
+      background: #ff4b2b;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-logout:hover {
+      background: #ff416c;
+      box-shadow: 0 5px 15px rgba(255, 75, 43, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="profile-card">
+    <div class="avatar-circle" id="userInitial">?</div>
+    <h1>Profil Saya</h1>
+
+    <div class="info-group">
+      <span class="info-label">Nama Lengkap</span>
+      <span class="info-value" id="name">Memuat...</span>
+    </div>
+
+    <div class="info-group">
+      <span class="info-label">Alamat Email</span>
+      <span class="info-value" id="email">Memuat...</span>
+    </div>
+      <div class="gallery-container">
+  <div class="section-header">
+    <h2>Koleksi Karya Seni</h2>
+    <p>Galeri karya yang telah Anda unggah</p>
+  </div>
+  
+  <div id="myArtworks" class="artwork-grid">
+    </div>
+</div>
+    <button class="btn-logout" id="btnLogout">Keluar</button>
+  </div>
+
+  <script type="module" src="./js/profil.js"></script>
+
+</body>
+</html>

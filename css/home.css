@@ -1,0 +1,65 @@
+/* LAYOUT */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* NAVBAR */
+.sidebar {
+  width: 100%;
+  height: 64px;
+  background: linear-gradient(90deg, #1e40af, #2563eb);
+  color: white;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO */
+.sidebar h2 {
+  font-size: 20px;
+  margin: 0;
+}
+
+/* MENU */
+.sidebar a {
+  margin-left: 16px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.sidebar a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* CONTENT */
+.content {
+  flex: 1;
+  padding: 32px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .sidebar h2 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .sidebar a {
+    margin-left: 0;
+    font-size: 14px;
+  }
+}

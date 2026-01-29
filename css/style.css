@@ -1,0 +1,184 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+:root {
+  --primary: #2563eb;
+  --primary-hover: #1e40af;
+  --bg-gradient: linear-gradient(135deg, #1e3a8a, #2563eb);
+  --sidebar-bg: #111827;
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --white: #ffffff;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif; /* Konsisten pakai Poppins */
+}
+
+body {
+  min-height: 100vh;
+  background-color: #f3f4f6; /* Warna dasar abu-abu terang agar kartu putih "pop up" */
+  color: var(--text-main);
+}
+
+/* ===== LAYOUT ===== */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 260px;
+  background: var(--sidebar-bg);
+  color: var(--white);
+  padding: 30px 24px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  transition: all 0.3s ease;
+}
+
+.sidebar h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  color: var(--white);
+  letter-spacing: 1px;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  color: #9ca3af;
+  text-decoration: none;
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.2s;
+}
+
+.sidebar a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+}
+
+/* ===== MAIN CONTENT ===== */
+.content {
+  flex: 1;
+  padding: 40px;
+  background: #f8fafc;
+}
+
+/* ===== ARTWORK GRID ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Ukuran kartu lebih proporsional */
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.artwork {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.artwork:hover {
+  transform: translateY(-8px);
+}
+
+.artwork img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.artwork-content {
+  padding: 20px;
+}
+
+.artwork-content h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: var(--text-main);
+}
+
+.artwork-content p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ===== LOGIN CARD (Khusus halaman Login) ===== */
+.login-page {
+  background: var(--bg-gradient);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  background: var(--white);
+  width: 90%;
+  max-width: 400px;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* INPUT & BUTTON */
+input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  border: 1.5px solid #e5e7eb;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: var(--primary);
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: var(--primary);
+  color: var(--white);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: var(--primary-hover);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    transform: translateX(-100%);
+    z-index: 1000;
+  }
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  .content {
+    padding: 20px;
+  }
+}
+
+

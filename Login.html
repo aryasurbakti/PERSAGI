@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | Komunitas Seni</title>
+  <link rel="stylesheet" href="css/upload.css">
+</head>
+<body>
+  <div class="card">
+    <h1>Login</h1>
+    <input id="email" type="email" placeholder="Email" required>
+    <input id="password" type="password" placeholder="Password" required>
+    <button id="btnLogin">Login</button>
+    
+    <div class="text-center">
+      <a href="register.html">Belum punya akun? Daftar</a>
+    </div>
+  </div>
+
+  <script type="module">
+    // 1. Import Firebase langsung dari CDN agar tidak perlu file lokal tambahan
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyA769Eb0MSCDKOcu-4-2MgOzQCIYhN8Kwo",
+  authDomain: "persagi-9699e.firebaseapp.com",
+  projectId: "persagi-9699e",
+  storageBucket: "persagi-9699e.firebasestorage.app",
+  messagingSenderId: "491949405417",
+  appId: "1:491949405417:web:7f33dd4ad7db7eda90ec78",
+  measurementId: "G-D32WHFHKTC"
+};
+
+    // 3. Inisialisasi
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // 4. Logika Tombol Login
+    const btnLogin = document.getElementById('btnLogin');
+    
+    btnLogin.addEventListener('click', async () => {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (!email || !password) {
+        alert("Harap isi email dan password!");
+        return;
+      }
+
+      btnLogin.innerText = "Memproses...";
+      btnLogin.disabled = true;
+
+      try {
+        // Melakukan login ke Firebase
+        await signInWithEmailAndPassword(auth, email, password);
+        
+        // JIKA BERHASIL: Langsung pindah ke halaman home
+        console.log("Login sukses!");
+        window.location.href = "home.html"; 
+      } catch (error) {
+        // JIKA GAGAL: Beri tahu alasannya
+        btnLogin.innerText = "Login";
+        btnLogin.disabled = false;
+        alert("Gagal Login: " + error.message);
+      }
+    });
+  </script>
+</body>
+</html>
