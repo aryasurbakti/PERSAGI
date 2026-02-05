@@ -17,7 +17,7 @@ btnLogin.addEventListener('click', () => {
     .then((userCredential) => {
       // BERHASIL LOGIN
       alert("Selamat datang!");
-      window.location.href = "dashboard.html"; // Ganti dengan halaman tujuan Anda
+      window.location.href = "upload.html"; // Ganti dengan halaman tujuan Anda
     })
     .catch((error) => {
       // GAGAL LOGIN

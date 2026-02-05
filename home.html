@@ -1,34 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PERSAGI</title>
   <link rel="stylesheet" href="css/home.css">
-  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
-<div class="layout">
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="logo">🎨 PERSAGI</div>
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <h2>ArtCommunity</h2>
+  <div class="nav-menu">
     <a href="home.html">🏠 Home</a>
     <a href="upload.html">➕ Upload</a>
     <a href="profil.html">👤 Profile</a>
-    <a href="#" onclick="logout()">🚪 Logout</a>
+    <a href="#" id="btnLogout">🚪 Logout</a>
+
   </div>
+</nav>
 
-  <!-- CONTENT -->
-  <div class="content">
-    <h1>Feed Karya</h1>
-    <div id="artworks" class="grid"></div>
+<!-- ===== CONTENT ===== -->
+<main class="content">
+  <h1>Feed Karya</h1>
+  <div id="artworks" class="grid">
+    <p>Loading karya...</p>
   </div>
+</main>
 
-</div>
-
-<script type="module" src="js/login.js"></script>
 <script type="module" src="js/home.js"></script>
+<script type="module" src="js/logout.js"></script>
 </body>
+</html>
+
+
 
 

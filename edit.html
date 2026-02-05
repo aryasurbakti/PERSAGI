@@ -1,20 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+  <meta charset="UTF-8">
   <title>Edit Artwork</title>
+  <link rel="stylesheet" href="css/upload.css">
+
 </head>
 <body>
 
-<h2>Edit Artwork</h2>
+<div class="upload-card">
+<h2>Edit Karya</h2>
 
-<input type="text" id="title"><br><br>
-<textarea id="description"></textarea><br><br>
-<input type="file" id="image"><br><br>
+<input type="text" id="title" placeholder="Judul">
+<textarea id="description" placeholder="Deskripsi"></textarea>
+<input type="file" id="image">
 
-<button onclick="updateArtwork()">Simpan Perubahan</button>
+<button id="saveBtn">Simpan Perubahan</button>
+</div>
 
-<script type="module" src="./js/firebase.js"></script>
-<script type="module" src="./js/edit.js"></script>
-
+<script type="module" src="firebase.js"></script>
+<script type="module" src="js/edit.js"></script>
 </body>
 </html>
+

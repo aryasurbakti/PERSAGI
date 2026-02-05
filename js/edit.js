@@ -1,31 +1,29 @@
-import { auth, db, storage } from "./firebase.js";
+import { onAuthStateChanged } from
+  "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 import {
   doc,
   getDoc,
-  updateDoc,
-  serverTimestamp
+  updateDoc
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-import {
-  ref,
-  uploadBytes,
-  getDownloadURL
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
-
-import {
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-// 🔹 Ambil ID dari URL
+/* ===============================
+   Ambil ID dari URL (VALIDASI)
+================================ */
 const params = new URLSearchParams(window.location.search);
 const artworkId = params.get("id");
 
-let currentUser = null;
-let oldImageUrl = null;
+if (!artworkId) {
+  alert("ID karya tidak ditemukan!");
+  throw new Error("artworkId null");
+}
 
-// 🔐 Cek login & kepemilikan
-onAuthStateChanged(auth, async (user) => {
+let currentUser = null;
+
+/* ===============================
+   AUTH GUARD
+================================ */
+onAuthStateChanged(window.auth, async (user) => {
   if (!user) {
     alert("Harus login");
     window.location.href = "login.html";
@@ -34,52 +32,65 @@ onAuthStateChanged(auth, async (user) => {
 
   currentUser = user;
 
-  const docRef = doc(db, "artworks", artworkId);
-  const docSnap = await getDoc(docRef);
-
-  if (!docSnap.exists() || docSnap.data().userId !== user.uid) {
-    alert("Tidak diizinkan");
-    window.location.href = "profil.html";
-    return;
-  }
-
-  const data = docSnap.data();
-  document.getElementById("title").value = data.title;
-  document.getElementById("description").value = data.description || "";
-  oldImageUrl = data.imageUrl;
-});
-
-// 🚀 Update artwork
-window.updateArtwork = async function () {
-  const title = document.getElementById("title").value;
-  const description = document.getElementById("description").value;
-  const file = document.getElementById("image").files[0];
-
-  let imageUrl = oldImageUrl;
-
   try {
-    // Jika ganti gambar
-    if (file) {
-      const imageRef = ref(
-        storage,
-        `artworks/${currentUser.uid}/${Date.now()}_${file.name}`
-      );
-      await uploadBytes(imageRef, file);
-      imageUrl = await getDownloadURL(imageRef);
+    const ref = doc(window.db, "artworks", artworkId);
+    const snap = await getDoc(ref);
+
+    if (!snap.exists()) {
+      alert("Karya tidak ditemukan");
+      window.location.href = "home.html";
+      return;
     }
 
-    await updateDoc(doc(db, "artworks", artworkId), {
-      title: title,
-      description: description,
-      imageUrl: imageUrl,
-      updatedAt: serverTimestamp()
-    });
+    // 🔒 Cek pemilik karya
+    if (snap.data().userId !== user.uid) {
+      alert("Bukan karya kamu!");
+      window.location.href = "home.html";
+      return;
+    }
 
-    alert("Artwork berhasil diperbarui");
-    window.location.href = "profil.html";
+    // Isi form
+    document.getElementById("title").value = snap.data().title;
+    document.getElementById("description").value =
+      snap.data().description || "";
 
   } catch (err) {
     console.error(err);
-    alert("Gagal update artwork");
+    alert("Gagal mengambil data");
   }
-};
+});
+
+/* ===============================
+   SIMPAN PERUBAHAN
+================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  const saveBtn = document.getElementById("saveBtn");
+
+  if (!saveBtn) return;
+
+  saveBtn.addEventListener("click", async () => {
+    const title = document.getElementById("title").value.trim();
+    const description = document.getElementById("description").value.trim();
+
+    if (!title) {
+      alert("Judul wajib diisi");
+      return;
+    }
+
+    try {
+      await updateDoc(doc(window.db, "artworks", artworkId), {
+        title,
+        description
+      });
+
+      alert("Karya berhasil diupdate");
+      window.location.href = "profil.html";
+
+    } catch (err) {
+      console.error(err);
+      alert("Gagal update karya");
+    }
+  });
+});
+
+

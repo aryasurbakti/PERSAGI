@@ -1,0 +1,115 @@
+/* ===== WARNA NUSANTARA ===== */
+:root {
+  --merah: #d32f2f;
+  --putih: #ffffff;
+  --emas: #c9a227;
+  --ungu-modern: #6c63ff;
+  --abu: #f4f4f4;
+}
+
+/* ===== BACKGROUND ===== */
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6c63ff, #8e44ad);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===== CARD CONTAINER ===== */
+.upload-container {
+  background: white;
+  width: 100%;
+  max-width: 700px;
+  padding: 32px;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+/* AKSEN MERAH PUTIH */
+.upload-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(to right, var(--merah), var(--putih));
+  border-radius: 18px 18px 0 0;
+}
+
+/* ===== JUDUL ===== */
+.upload-container h2 {
+  text-align: center;
+  color: var(--merah);
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+
+/* ===== FORM ===== */
+.upload-form input,
+.upload-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  border: 1.5px solid #ddd;
+  font-size: 15px;
+  outline: none;
+}
+
+.upload-form input:focus,
+.upload-form textarea:focus {
+  border-color: var(--merah);
+}
+
+/* ===== TEXTAREA ===== */
+.upload-form textarea {
+  resize: none;
+  height: 120px;
+}
+
+/* ===== FILE UPLOAD CUSTOM ===== */
+.file-upload {
+  border: 2px dashed var(--emas);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  color: #555;
+  cursor: pointer;
+  margin-bottom: 24px;
+  transition: 0.3s;
+}
+
+.file-upload:hover {
+  background: #fff8e1;
+}
+
+.file-upload input {
+  display: none;
+}
+
+.file-upload span {
+  font-weight: 600;
+}
+
+/* ===== BUTTON ===== */
+.upload-form button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(to right, var(--merah), #b71c1c);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(211, 47, 47, 0.4);
+}

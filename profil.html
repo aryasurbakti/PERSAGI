@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profil Saya | Komunitas Seni</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/style.css">
   <style>
     :root {
-      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --glass-bg: rgba(255, 255, 255, 0.9);
+      --primary-gradient: linear-gradient(135deg, #f80202 0%, #e9e8ea 100%);
+      --glass-bg: rgba(255, 255, 255, 0.95);
+      --danger: #ff4b2b;
     }
 
     body {
@@ -17,118 +17,164 @@
       background: var(--primary-gradient);
       min-height: 100vh;
       margin: 0;
+      padding: 40px 20px;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      padding: 20px;
     }
 
+    /* Container Utama */
+    .container {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    /* Bagian Profil Atas */
     .profile-card {
       background: var(--glass-bg);
-      backdrop-filter: blur(10px);
       border-radius: 20px;
-      padding: 40px;
-      width: 100%;
-      max-width: 500px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      padding: 30px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
       text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .profile-card:hover {
-      transform: translateY(-5px);
+      margin-bottom: 40px;
     }
 
     .avatar-circle {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       background: var(--primary-gradient);
       border-radius: 50%;
-      margin: 0 auto 20px;
+      margin: 0 auto 15px;
       display: flex;
       justify-content: center;
       align-items: center;
       color: white;
-      font-size: 40px;
+      font-size: 32px;
       font-weight: 600;
-      box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
     }
 
-    h1 {
-      color: #333;
-      margin-bottom: 30px;
-      font-weight: 600;
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin: 20px 0;
     }
 
     .info-group {
       text-align: left;
       background: rgba(0,0,0,0.03);
-      padding: 15px 20px;
-      border-radius: 12px;
-      margin-bottom: 15px;
+      padding: 10px 15px;
+      border-radius: 10px;
       border-left: 4px solid #764ba2;
     }
 
-    .info-label {
-      font-size: 12px;
-      color: #888;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .info-label { font-size: 11px; color: #888; text-transform: uppercase; }
+    .info-value { font-size: 14px; color: #444; font-weight: 500; display: block; }
+
+    /* Bagian Galeri */
+    .gallery-container {
+      width: 100%;
     }
 
-    .info-value {
-      font-size: 16px;
-      color: #444;
-      font-weight: 500;
-      display: block;
+    .section-header {
+      color: white;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
+
+    .artwork-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    /* Kartu Karya */
+    .artwork-item {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .artwork-item:hover { transform: translateY(-5px); }
+
+    .artwork-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .artwork-info {
+      padding: 15px;
+    }
+
+    .artwork-info h4 { margin: 0 0 10px; color: #333; }
+
+    .action-btns {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-edit, .btn-delete {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .btn-edit { background: #eef2ff; color: #4f46e5; }
+    .btn-delete { background: #fff1f0; color: #e11d48; }
+    .btn-edit:hover { background: #e0e7ff; }
+    .btn-delete:hover { background: #fee2e2; }
 
     .btn-logout {
-      margin-top: 30px;
-      background: #ff4b2b;
+      background: var(--danger);
       color: white;
       border: none;
-      padding: 12px 30px;
-      border-radius: 25px;
+      padding: 10px 25px;
+      border-radius: 20px;
       cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .btn-logout:hover {
-      background: #ff416c;
-      box-shadow: 0 5px 15px rgba(255, 75, 43, 0.3);
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
-  <div class="profile-card">
-    <div class="avatar-circle" id="userInitial">?</div>
-    <h1>Profil Saya</h1>
-
-    <div class="info-group">
-      <span class="info-label">Nama Lengkap</span>
-      <span class="info-value" id="name">Memuat...</span>
+  <div class="container">
+    <div class="profile-card">
+      <div class="avatar-circle" id="userInitial">?</div>
+      <h2 style="margin:0">Profil Saya</h2>
+      
+      <div class="info-grid">
+        <div class="info-group">
+          <span class="info-label">Nama Lengkap</span>
+          <span class="info-value" id="name">Memuat...</span>
+        </div>
+        <div class="info-group">
+          <span class="info-label">Email</span>
+          <span class="info-value" id="email">Memuat...</span>
+        </div>
+      </div>
+      
+      <button class="btn-logout" id="btnLogout">Keluar</button>
     </div>
 
-    <div class="info-group">
-      <span class="info-label">Alamat Email</span>
-      <span class="info-value" id="email">Memuat...</span>
+    <div class="gallery-container">
+      <div class="section-header">
+        <h3>Koleksi Karya Seni</h3>
+        <p>Kelola karya yang telah Anda unggah</p>
+      </div>
+      
+      <div id="myArtworks" class="artwork-grid">
+        </div>
     </div>
-      <div class="gallery-container">
-  <div class="section-header">
-    <h2>Koleksi Karya Seni</h2>
-    <p>Galeri karya yang telah Anda unggah</p>
-  </div>
-  
-  <div id="myArtworks" class="artwork-grid">
-    </div>
-</div>
-    <button class="btn-logout" id="btnLogout">Keluar</button>
   </div>
 
   <script type="module" src="./js/profil.js"></script>
-
 </body>
 </html>

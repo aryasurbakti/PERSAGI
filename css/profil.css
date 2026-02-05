@@ -51,3 +51,59 @@
   font-size: 13px;
   color: #888;
 }
+body {
+  font-family: Arial;
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.art-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.art-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.uploader {
+  font-size: 12px;
+  color: gray;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+button {
+  padding: 6px 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn-edit {
+  background: #ffc107;
+}
+
+.btn-delete {
+  background: #dc3545;
+  color: white;
+}
